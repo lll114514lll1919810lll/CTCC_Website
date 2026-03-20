@@ -503,6 +503,35 @@
         button, .dot, .link-item {
             cursor: pointer;
         }
+
+        .subpage-stage {
+            display: none;
+            margin: 28px auto 40px;
+            max-width: 980px;
+            padding: 0;
+            border: 1px solid var(--border-light);
+            border-radius: 20px;
+            overflow: hidden;
+            background: #fff;
+            box-shadow: 0 8px 18px rgba(0,0,0,0.06);
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.28s ease, transform 0.28s ease;
+        }
+        .subpage-stage.visible {
+            display: block;
+        }
+        .subpage-stage.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .subpage-frame {
+            width: 100%;
+            min-height: 1000px;
+            border: 0;
+            display: block;
+            background: #fff;
+        }
     </style>
 <style>.Po4BvhR1CK2tJaywJ6AN path {
   fill: var(--icon-path-fill);
@@ -702,21 +731,21 @@
 <div class="nav-menu">
     <div class="container">
         <ul class="nav-list">
-            <li class="active"><a href="##">首页</a></li>
+            <li class="active"><a href="index.html" data-panel="home">首页</a></li>
             
-            <li><a href="##">新闻中心</a></li>
+            <li><a href="news.html" data-panel="news-panel">新闻中心</a></li>
             
-            <li><a href="##">厕所架构</a></li>
+            <li><a href="architecture.html" data-panel="architecture-panel">厕所架构</a></li>
             
             
-            <li><a href="##">国际交流</a></li>
-            <li><a href="##">如厕服务</a></li>
-            <li><a href="##">信息公开</a></li>
+            <li><a href="exchange.html" data-panel="exchange-panel">国际交流</a></li>
+            <li><a href="services.html" data-panel="services-panel">如厕服务</a></li>
+            <li><a href="disclosure.html" data-panel="disclosure-panel">信息公开</a></li>
         </ul>
     </div>
 </div>
 
-<main>
+<main id="homeContent">
     <div class="container">
         <!-- 轮播 Banner 庄重大气 -->
         <div class="carousel-section">
@@ -750,14 +779,14 @@
             <div class="news-section">
                 <h2><i class="fas fa-newspaper" style="margin-right: 10px;"></i> 厕所要闻</h2>
                 <ul class="news-list">
-                    <li><a href="##">示例文本</a><span class="news-date">2025-03-18</span></li>
-                    <li><a href="##">示例文本</a><span class="news-date">2025-03-15</span></li>
-                    <li><a href="##">示例文本</a><span class="news-date">2025-03-12</span></li>
-                    <li><a href="##">示例文本</a><span class="news-date">2025-03-10</span></li>
-                    <li><a href="##">示例文本</a><span class="news-date">2025-03-07</span></li>
-                    <li><a href="##">示例文本</a><span class="news-date">2025-03-05</span></li>
+                    <li><a href="news.html#n1" data-panel="news-panel" data-panel-hash="#n1">2026年第一季度厕所文明指数发布</a><span class="news-date">2026-03-18</span></li>
+                    <li><a href="news.html#n2" data-panel="news-panel" data-panel-hash="#n2">后勤处联合厕委会开展设施巡检</a><span class="news-date">2026-03-15</span></li>
+                    <li><a href="news.html#n3" data-panel="news-panel" data-panel-hash="#n3">“无纸化报修”系统上线试运行</a><span class="news-date">2026-03-12</span></li>
+                    <li><a href="news.html#n4" data-panel="news-panel" data-panel-hash="#n4">学生代表会议讨论晚间开放时段</a><span class="news-date">2026-03-10</span></li>
+                    <li><a href="news.html#n5" data-panel="news-panel" data-panel-hash="#n5">公共区域香氛管理标准完成修订</a><span class="news-date">2026-03-07</span></li>
+                    <li><a href="news.html#n6" data-panel="news-panel" data-panel-hash="#n6">春季志愿服务队招募正式启动</a><span class="news-date">2026-03-05</span></li>
                 </ul>
-                <div class="more-link"><a href="##">更多新闻 <i class="fas fa-arrow-right"></i></a></div>
+                <div class="more-link"><a href="news.html" data-panel="news-panel">更多新闻 <i class="fas fa-arrow-right"></i></a></div>
             </div>
 
             <!-- 右侧区域 -->
@@ -766,13 +795,13 @@
                 <div class="announce-section">
                     <h2><i class="fas fa-bullhorn"></i> 通知公告</h2>
                     <ul class="announce-list">
-                        <li><a href="##">示例文本</a><span class="announce-date">03-19</span></li>
-                        <li><a href="##">示例文本</a><span class="announce-date">03-18</span></li>
-                        <li><a href="##">示例文本</a><span class="announce-date">03-16</span></li>
-                        <li><a href="##">示例文本</a><span class="announce-date">03-14</span></li>
-                        <li><a href="##">示例文本</a><span class="announce-date">03-12</span></li>
+                        <li><a href="notices.html#notice1" data-panel="notices-panel" data-panel-hash="#notice1">关于清明节期间开放安排的通知</a><span class="announce-date">03-19</span></li>
+                        <li><a href="notices.html#notice2" data-panel="notices-panel" data-panel-hash="#notice2">本周六进行供水系统例行维护</a><span class="announce-date">03-18</span></li>
+                        <li><a href="notices.html#notice3" data-panel="notices-panel" data-panel-hash="#notice3">建议反馈通道升级公告</a><span class="announce-date">03-16</span></li>
+                        <li><a href="notices.html#notice4" data-panel="notices-panel" data-panel-hash="#notice4">三号楼东侧卫生间临时封闭说明</a><span class="announce-date">03-14</span></li>
+                        <li><a href="notices.html#notice5" data-panel="notices-panel" data-panel-hash="#notice5">文明如厕宣传月活动预告</a><span class="announce-date">03-12</span></li>
                     </ul>
-                    <div class="more-link"><a href="##">更多通知 <i class="fas fa-chevron-right"></i></a></div>
+                    <div class="more-link"><a href="notices.html" data-panel="notices-panel">更多通知 <i class="fas fa-chevron-right"></i></a></div>
                 </div>
 
                 <!-- 快速通道 办事大厅风格 -->
@@ -794,20 +823,24 @@
         <div class="friendship">
             <h3><i class="fas fa-handshake"></i> 合作与链接</h3>
             <div class="friend-links">
-                <a href="##">示例文本</a>
-                <a href="##">示例文本</a>
-                <a href="##">示例文本</a>
-                <a href="##">示例文本</a>
-                <a href="##">示例文本</a>
-                <a href="##">示例文本</a>
-                <a href="##">示例文本</a>
-                <a href="##">示例文本</a>
-                <a href="##">示例文本</a>
-                <a href="##">示例文本</a>
+                <a href="architecture.html" data-panel="architecture-panel">组织架构总览</a>
+                <a href="news.html" data-panel="news-panel">新闻中心</a>
+                <a href="notices.html" data-panel="notices-panel">通知公告</a>
+                <a href="exchange.html" data-panel="exchange-panel">国际交流</a>
+                <a href="services.html" data-panel="services-panel">服务大厅</a>
+                <a href="disclosure.html" data-panel="disclosure-panel">信息公开</a>
+                <a href="https://www.ccnu.edu.cn" target="_blank" rel="noopener noreferrer">华中师范大学</a>
+                <a href="https://www.hssyfz.com" target="_blank" rel="noopener noreferrer">华师一附中</a>
+                <a href="https://jyt.hubei.gov.cn" target="_blank" rel="noopener noreferrer">湖北省教育厅</a>
+                <a href="https://www.moe.gov.cn" target="_blank" rel="noopener noreferrer">教育部</a>
             </div>
         </div>
     </div>
 </main>
+
+<section class="container subpage-stage" id="subpageStage" aria-live="polite">
+    <iframe class="subpage-frame" id="subpageFrame" title="内容区"></iframe>
+</section>
 
 <!-- 页脚区域 权威完整 -->
 <footer class="footer">
@@ -943,5 +976,6 @@
         });
     }
 </script>
+<script defer src="content-switcher.js"></script>
 
 </body></html>

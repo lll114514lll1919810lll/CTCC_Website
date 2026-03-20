@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>如厕服务 - 华师一附中厕所中央委员会</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="page-transition.css">
+<style>
+:root{--d:#0a2b4e;--a:#b68b40;--b:#e2e8f0;--bg:#f5f7fb;--f:#0a1c2f;}*{margin:0;padding:0;box-sizing:border-box;}body{font-family:'Inter','Microsoft YaHei',sans-serif;background:var(--bg);color:#0f172a;}a{text-decoration:none;color:inherit;}.container{max-width:1120px;margin:0 auto;padding:0 24px;}.top{background:var(--d);color:#fff;padding:10px 0;border-bottom:2px solid var(--a);} .head,.nav{background:#fff;border-bottom:1px solid var(--b);} .head{padding:20px 0;} .nav ul{list-style:none;display:flex;flex-wrap:wrap;gap:6px;} .nav a{display:inline-block;padding:13px 14px;border-bottom:3px solid transparent;font-weight:600;} .nav .active a,.nav a:hover{color:var(--a);border-bottom-color:var(--a);} .hero{margin:26px 0;background:linear-gradient(120deg,#133b63,#2c6d9f);color:#fff;border-radius:16px;padding:24px;} .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin:0 0 18px;} .card{background:#fff;border:1px solid var(--b);border-radius:12px;padding:16px;} .card h3{font-size:1.02rem;color:var(--d);margin-bottom:8px;} .card p{font-size:.92rem;color:#334155;line-height:1.6;} .steps{background:#fff;border:1px solid var(--b);border-radius:12px;padding:16px 20px;margin-bottom:34px;} .steps ol{padding-left:20px;} .steps li{margin:8px 0;color:#334155;} .footer{background:var(--f);color:#b9cded;text-align:center;padding:22px 8px;font-size:.85rem;}
+</style>
+</head>
+<body>
+<div class="top"><div class="container"><span class="today"><i class="fas fa-calendar-alt"></i> 2026年03月20日 星期五</span></div></div>
+<header class="head"><div class="container"><h1>如厕服务</h1></div></header>
+<nav class="nav"><div class="container"><ul><li><a href="index.html">首页</a></li><li><a href="news.html">新闻中心</a></li><li><a href="architecture.html">厕所架构</a></li><li><a href="exchange.html">国际交流</a></li><li class="active"><a href="services.html">如厕服务</a></li><li><a href="disclosure.html">信息公开</a></li></ul></div></nav>
+<main class="container">
+<section class="hero"><h2><i class="fas fa-hands-helping"></i> 办事与服务</h2><p>提供报修、咨询、失物、卫生建议等统一办理入口，支持全过程反馈与结果公示。</p></section>
+<section class="cards">
+<article class="card"><h3>设施报修</h3><p>受理水龙头漏水、冲水异常、照明故障等问题，常规事项 24 小时内响应。</p></article>
+<article class="card"><h3>卫生建议</h3><p>提交空间改造、耗材补充、流程优化建议，评估结果将纳入月度治理议题。</p></article>
+<article class="card"><h3>失物招领</h3><p>提供失物登记和认领查询服务，支持拍照上传与时段定位，提升找回效率。</p></article>
+<article class="card"><h3>无障碍协助</h3><p>为有需要的师生提供专属通道与值班协助，保障使用过程安全、顺畅。</p></article>
+</section>
+<section class="steps">
+<h3 style="margin-bottom:10px;color:#0a2b4e;">办理流程</h3>
+<ol>
+<li>在首页“快速通道”进入对应服务入口并填写基本信息。</li>
+<li>系统自动生成工单编号，进入分派与处理阶段。</li>
+<li>完成后收到短信或站内通知，可在线评价处理结果。</li>
+</ol>
+</section>
+</main>
+<footer class="footer">© 2025 华中师大一附中厕所中央委员会 版权所有</footer>
+<script>(function(){const e=document.querySelector('.today');const n=new Date();const w=['星期日','星期一','星期二','星期三','星期四','星期五','星期六'];e.innerHTML=`<i class="fas fa-calendar-alt"></i> ${n.getFullYear()}年${String(n.getMonth()+1).padStart(2,'0')}月${String(n.getDate()).padStart(2,'0')}日 ${w[n.getDay()]}`;})();</script>
+<script defer src="page-transition.js"></script>
+</body>
+</html>
