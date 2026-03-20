@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>通知公告 - 华师一附中厕所中央委员会</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="page-transition.css">
+    <style>
+        :root { --primary-dark:#0a2b4e; --primary-accent:#b68b40; --border-light:#e2e8f0; --bg:#f5f7fb; --footer-bg:#0a1c2f; }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Inter','Microsoft YaHei','Segoe UI',sans-serif; background:var(--bg); color:#0f172a; }
+        a { text-decoration:none; color:inherit; }
+        .container { max-width:1080px; margin:0 auto; padding:0 24px; }
+        .top-bar { background:var(--primary-dark); color:#fff; padding:10px 0; border-bottom:2px solid var(--primary-accent); }
+        .header { background:#fff; padding:20px 0; border-bottom:1px solid var(--border-light); }
+        .title { font-size:1.5rem; color:var(--primary-dark); font-weight:700; }
+        .nav { background:#fff; border-bottom:1px solid var(--border-light); }
+        .nav ul { list-style:none; display:flex; flex-wrap:wrap; gap:6px; }
+        .nav a { display:inline-block; padding:13px 14px; border-bottom:3px solid transparent; font-weight:600; }
+        .nav .active a, .nav a:hover { color:var(--primary-accent); border-bottom-color:var(--primary-accent); }
+        .panel { margin:26px 0 34px; background:#fff; border:1px solid var(--border-light); border-radius:16px; overflow:hidden; }
+        .panel-head { background:linear-gradient(120deg, #163c67, #2b5d8e); color:#fff; padding:16px 20px; }
+        .panel-head h2 { font-size:1.35rem; }
+        .notice { padding:16px 20px; border-top:1px solid var(--border-light); }
+        .notice small { color:#64748b; display:block; margin-bottom:5px; }
+        .notice h3 { font-size:1.06rem; margin-bottom:6px; }
+        .notice p { color:#334155; font-size:0.95rem; line-height:1.65; }
+        .footer { background:var(--footer-bg); color:#b9cded; text-align:center; padding:22px 10px; font-size:0.85rem; }
+    </style>
+</head>
+<body>
+<div class="top-bar"><div class="container"><span class="today"><i class="fas fa-calendar-alt"></i> 2026年03月20日 星期五</span></div></div>
+<header class="header"><div class="container"><div class="title">通知公告</div></div></header>
+<nav class="nav"><div class="container"><ul>
+    <li><a href="index.html">首页</a></li>
+    <li><a href="news.html">新闻中心</a></li>
+    <li><a href="architecture.html">厕所架构</a></li>
+    <li><a href="exchange.html">国际交流</a></li>
+    <li><a href="services.html">如厕服务</a></li>
+    <li class="active"><a href="notices.html">通知公告</a></li>
+</ul></div></nav>
+<main class="container">
+    <section class="panel">
+        <div class="panel-head"><h2><i class="fas fa-bullhorn"></i> 最新通知</h2></div>
+        <article class="notice" id="notice1"><small>2026-03-19 | 办公室</small><h3>关于清明节期间开放安排的通知</h3><p>节假日期间实行值班开放制度，具体时段为 7:00-21:30。请各年级结合课程安排合理错峰使用。</p></article>
+        <article class="notice" id="notice2"><small>2026-03-18 | 设施维护组</small><h3>本周六进行供水系统例行维护</h3><p>维护时间为 09:30-11:30，届时部分楼层将短时停水，维护结束后将第一时间恢复并复检。</p></article>
+        <article class="notice" id="notice3"><small>2026-03-16 | 信息化组</small><h3>建议反馈通道升级公告</h3><p>新版反馈系统支持匿名提交、图片上传和处理进度查询，请通过服务大厅统一入口访问。</p></article>
+        <article class="notice" id="notice4"><small>2026-03-14 | 运行管理组</small><h3>三号楼东侧卫生间临时封闭说明</h3><p>受墙面防水施工影响，该区域预计封闭 48 小时，请临时使用同层西侧卫生间。</p></article>
+        <article class="notice" id="notice5"><small>2026-03-12 | 宣传组</small><h3>文明如厕宣传月活动预告</h3><p>活动将于下周一启动，包含主题宣讲、志愿值岗与积分激励，欢迎同学积极参与。</p></article>
+    </section>
+</main>
+<footer class="footer">© 2025 华中师大一附中厕所中央委员会 版权所有</footer>
+<script>
+(function updateDate() {
+    const dateElem = document.querySelector('.today');
+    const now = new Date();
+    const weekdays = ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'];
+    dateElem.innerHTML = `<i class="fas fa-calendar-alt"></i> ${now.getFullYear()}年${String(now.getMonth()+1).padStart(2,'0')}月${String(now.getDate()).padStart(2,'0')}日 ${weekdays[now.getDay()]}`;
+})();
+</script>
+<script defer src="page-transition.js"></script>
+</body>
+</html>

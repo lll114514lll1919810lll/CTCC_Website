@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>新闻中心 - 华师一附中厕所中央委员会</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="page-transition.css">
+    <style>
+        :root {
+            --primary-dark: #0a2b4e;
+            --primary-accent: #b68b40;
+            --border-light: #e2e8f0;
+            --text-dark: #0f172a;
+            --text-muted: #475569;
+            --card-white: #ffffff;
+            --bg: #f5f7fb;
+            --footer-bg: #0a1c2f;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', 'Microsoft YaHei', 'Segoe UI', sans-serif;
+            background: var(--bg);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+        a { text-decoration: none; color: inherit; }
+        .container { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+        .top-bar { background: var(--primary-dark); color: #fff; padding: 10px 0; border-bottom: 2px solid var(--primary-accent); }
+        .header-main { background: #fff; padding: 22px 0; border-bottom: 1px solid var(--border-light); }
+        .header-flex { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+        .logo-area { display: flex; align-items: center; gap: 14px; }
+        .logo-icon { width: 62px; height: 62px; border-radius: 50%; background: #eef3f8; color: var(--primary-dark); display: flex; align-items: center; justify-content: center; font-size: 34px; }
+        .site-title h1 { font-size: 1.45rem; color: var(--primary-dark); }
+        .site-title p { font-size: 0.85rem; color: var(--text-muted); }
+        .nav-menu { background: #fff; border-bottom: 1px solid var(--border-light); }
+        .nav-list { list-style: none; display: flex; flex-wrap: wrap; gap: 6px; }
+        .nav-list a { display: inline-block; padding: 14px 16px; font-weight: 600; border-bottom: 3px solid transparent; }
+        .nav-list .active a, .nav-list a:hover { color: var(--primary-accent); border-bottom-color: var(--primary-accent); }
+        .hero { margin: 28px 0 20px; background: linear-gradient(120deg, #12365e, #355b82); color: #fff; border-radius: 18px; padding: 28px; }
+        .hero h2 { font-size: 1.8rem; margin-bottom: 10px; }
+        .hero p { opacity: 0.9; max-width: 760px; }
+        .news-list { margin: 20px 0 40px; display: grid; gap: 14px; }
+        .news-card {
+            background: var(--card-white);
+            border: 1px solid var(--border-light);
+            border-left: 5px solid var(--primary-accent);
+            border-radius: 14px;
+            padding: 18px 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+        }
+        .news-meta { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 6px; }
+        .news-card h3 { font-size: 1.08rem; margin-bottom: 8px; }
+        .news-card p { color: #334155; font-size: 0.95rem; }
+        .footer { background: var(--footer-bg); color: #b9cded; padding: 32px 0 20px; font-size: 0.85rem; }
+        .footer a { color: #b9cded; }
+        .footer a:hover { color: var(--primary-accent); }
+        .footer-note { text-align: center; border-top: 1px solid rgba(255,255,255,0.12); padding-top: 14px; margin-top: 18px; }
+        @media (max-width: 800px) {
+            .hero h2 { font-size: 1.45rem; }
+            .container { padding: 0 16px; }
+        }
+    </style>
+</head>
+<body>
+<div class="top-bar">
+    <div class="container"><span class="today"><i class="fas fa-calendar-alt"></i> 2026年03月20日 星期五</span></div>
+</div>
+<header class="header-main">
+    <div class="container header-flex">
+        <div class="logo-area">
+            <div class="logo-icon"><i class="fas fa-landmark"></i></div>
+            <div class="site-title">
+                <h1>华师一附中厕所中央委员会</h1>
+                <p>CCNU Toilet Central Committee</p>
+            </div>
+        </div>
+    </div>
+</header>
+<nav class="nav-menu">
+    <div class="container">
+        <ul class="nav-list">
+            <li><a href="index.html">首页</a></li>
+            <li class="active"><a href="news.html">新闻中心</a></li>
+            <li><a href="architecture.html">厕所架构</a></li>
+            <li><a href="exchange.html">国际交流</a></li>
+            <li><a href="services.html">如厕服务</a></li>
+            <li><a href="disclosure.html">信息公开</a></li>
+        </ul>
+    </div>
+</nav>
+<main class="container">
+    <section class="hero">
+        <h2><i class="fas fa-newspaper"></i> 新闻中心</h2>
+        <p>发布厕务建设、设施维护、学生服务和治理优化相关动态，形成规范、透明、可追踪的信息传播机制。</p>
+    </section>
+    <section class="news-list">
+        <article class="news-card" id="n1">
+            <div class="news-meta">2026-03-18 | 发布单位：办公室</div>
+            <h3>2026年第一季度厕所文明指数发布</h3>
+            <p>基于巡检记录、学生问卷与后勤数据综合评估，第一季度综合得分较去年同期提升 12.7%。</p>
+        </article>
+        <article class="news-card" id="n2">
+            <div class="news-meta">2026-03-15 | 发布单位：设施处</div>
+            <h3>后勤处联合厕委会开展设施巡检</h3>
+            <p>围绕照明、通风、无障碍扶手及供水系统开展专项排查，已形成问题闭环台账。</p>
+        </article>
+        <article class="news-card" id="n3">
+            <div class="news-meta">2026-03-12 | 发布单位：信息化组</div>
+            <h3>“无纸化报修”系统上线试运行</h3>
+            <p>师生可通过统一入口提交报修事项，系统支持工单追踪、节点提醒和处理评价。</p>
+        </article>
+        <article class="news-card" id="n4">
+            <div class="news-meta">2026-03-10 | 发布单位：学生联络组</div>
+            <h3>学生代表会议讨论晚间开放时段</h3>
+            <p>会议聚焦夜间自习高峰期使用需求，提出分区动态开放与值班协同方案。</p>
+        </article>
+        <article class="news-card" id="n5">
+            <div class="news-meta">2026-03-07 | 发布单位：规范标准组</div>
+            <h3>公共区域香氛管理标准完成修订</h3>
+            <p>新版标准明确了可接受浓度、维护频次和异常处置流程，强化舒适度与健康要求。</p>
+        </article>
+        <article class="news-card" id="n6">
+            <div class="news-meta">2026-03-05 | 发布单位：志愿服务队</div>
+            <h3>春季志愿服务队招募正式启动</h3>
+            <p>本次招募面向高一至高三学生，岗位覆盖导引服务、文明劝导和信息反馈三大方向。</p>
+        </article>
+    </section>
+</main>
+<footer class="footer">
+    <div class="container">
+        <div>电话：+86 114-1145 1234 | 邮箱：president@ctcc.gov.cn</div>
+        <div class="footer-note">© 2025 华中师大一附中厕所中央委员会 版权所有</div>
+    </div>
+</footer>
+<script>
+(function updateDate() {
+    const dateElem = document.querySelector('.today');
+    const now = new Date();
+    const weekdays = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
+    dateElem.innerHTML = `<i class="fas fa-calendar-alt"></i> ${now.getFullYear()}年${String(now.getMonth() + 1).padStart(2, '0')}月${String(now.getDate()).padStart(2, '0')}日 ${weekdays[now.getDay()]}`;
+})();
+</script>
+<script defer src="page-transition.js"></script>
+</body>
+</html>
