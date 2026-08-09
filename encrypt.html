@@ -278,6 +278,20 @@
     border-color: rgba(248,113,113,0.25);
   }
 
+  /* Swap button */
+  .btn-swap {
+    background: rgba(167,139,250,0.08);
+    border-color: rgba(167,139,250,0.18);
+    color: #a78bfa;
+  }
+
+  .btn-swap:hover {
+    background: rgba(167,139,250,0.15);
+    border-color: rgba(167,139,250,0.3);
+  }
+
+  .row { display: flex; gap: 12px; }
+
   /* Output section */
   .output-section {
     margin-top: 20px;
@@ -339,6 +353,13 @@
       <div class="offset-badge" id="offsetBadge">seed <strong id="offsetVal"></strong></div>
     </div>
 
+    <div class="row">
+      <div class="field" style="flex:1">
+        <label><span class="dot"></span>轮次</label>
+        <input type="number" id="rounds" value="1" min="1" max="99">
+      </div>
+    </div>
+
     <div class="field">
       <label><span class="dot"></span>输入文本</label>
       <textarea id="input" placeholder="在此输入要加密或解密的文本..."></textarea>
@@ -356,6 +377,7 @@
       </div>
       <div class="btn-group">
         <button class="btn btn-amber" onclick="copyResult()">复制结果</button>
+        <button class="btn btn-swap" onclick="swapToInput()">回填输入</button>
         <button class="btn btn-red" onclick="clearAll()">清空</button>
       </div>
     </div>
@@ -460,21 +482,25 @@ function getKeyString() {
 
 function doEncrypt() {
   try {
-    const text = document.getElementById('input').value;
+    let text = document.getElementById('input').value;
     const key = getKeyString();
+    const rounds = Math.max(1, parseInt(document.getElementById('rounds').value, 10) || 1);
     if (!text) { showToast('请输入要加密的文本'); return; }
-    document.getElementById('output').value = encrypt(text, key);
-    showToast('加密完成');
+    for (let r = 0; r < rounds; r++) text = encrypt(text, key);
+    document.getElementById('output').value = text;
+    showToast(`加密完成（${rounds} 轮）`);
   } catch (e) { alert(e.message); }
 }
 
 function doDecrypt() {
   try {
-    const text = document.getElementById('input').value;
+    let text = document.getElementById('input').value;
     const key = getKeyString();
+    const rounds = Math.max(1, parseInt(document.getElementById('rounds').value, 10) || 1);
     if (!text) { showToast('请输入要解密的密文'); return; }
-    document.getElementById('output').value = decrypt(text, key);
-    showToast('解密完成');
+    for (let r = 0; r < rounds; r++) text = decrypt(text, key);
+    document.getElementById('output').value = text;
+    showToast(`解密完成（${rounds} 轮）`);
   } catch (e) { alert(e.message); }
 }
 
@@ -511,6 +537,15 @@ function clearAll() {
   document.getElementById('output').value = '';
   document.getElementById('input').focus();
   showToast('已清空');
+}
+
+function swapToInput() {
+  const output = document.getElementById('output');
+  if (!output.value) { showToast('没有可回填的内容'); return; }
+  document.getElementById('input').value = output.value;
+  output.value = '';
+  document.getElementById('input').focus();
+  showToast('已回填到输入框');
 }
 
 let toastTimer = null;
