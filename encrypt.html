@@ -367,7 +367,37 @@
 <script>
 const MOD = 0x110000;
 
-// 把密钥字符串哈希成一个 32 位种子
+// ---- 控制字符 / 代理区 ----
+function isControl(code) {
+  return (code <= 0x1F) || (code >= 0x7F && code <= 0x9F) ||
+         (code >= 0xD800 && code <= 0xDFFF);
+}
+
+// 统计安全字符总数
+let SAFE_TOTAL = 0;
+for (let i = 0; i < MOD; i++) {
+  if (!isControl(i)) SAFE_TOTAL++;
+}
+
+// 正向映射：安全位置 → Unicode 码点（跳过控制字符）
+const fwdMap = new Uint32Array(SAFE_TOTAL);
+// 反向映射：Unicode 码点 → 安全位置
+const revMap = new Int32Array(MOD);
+
+(function buildMaps() {
+  let safeIdx = 0;
+  for (let code = 0; code < MOD; code++) {
+    if (!isControl(code)) {
+      fwdMap[safeIdx] = code;
+      revMap[code] = safeIdx;
+      safeIdx++;
+    } else {
+      revMap[code] = -1; // 标记为不可映射
+    }
+  }
+})();
+
+// ---- 密钥 → 伪随机偏移序列 ----
 function hashKey(key) {
   let h = 0x811c9dc5;
   for (let i = 0; i < key.length; i++) {
@@ -377,31 +407,29 @@ function hashKey(key) {
   return h >>> 0;
 }
 
-// 基于种子的伪随机偏移序列：每个位置产生不同的偏移量（0~127）
-// 使用 LCG（线性同余）算法，确保密钥相同则序列完全一致
 function makeShift(key, pos) {
   const seed = hashKey(key);
-  // 用种子 + 位置混合，每个位置得到独立的伪随机值
-  let x = (seed + pos * 0x9E3779B9) | 0;  // 黄金比例哈希混合
+  let x = (seed + pos * 0x9E3779B9) | 0;
   x = (x ^ (x >>> 16)) * 0x45d9f3b | 0;
   x = (x ^ (x >>> 16)) * 0x45d9f3b | 0;
   x = x ^ (x >>> 16);
-  return (x >>> 0) % 128;  // 0 ~ 127
+  return (x >>> 0) % SAFE_TOTAL; // 偏移范围 0 ~ SAFE_TOTAL-1
 }
 
-function getKeyString() {
-  const k = document.getElementById('key').value;
-  if (!k) throw new Error('请输入密钥字符串');
-  return k;
-}
-
+// ---- 加解密 ----
 function encrypt(text, key) {
   let result = '';
   for (let i = 0; i < text.length; i++) {
     const code = text.codePointAt(i);
-    const shift = makeShift(key, i);
-    const newCode = (((code % MOD) + shift) % MOD + MOD) % MOD;
-    result += String.fromCodePoint(newCode);
+    const safePos = revMap[code]; // 原文在安全序列中的位置
+    if (safePos === -1) {
+      // 原文本身是控制字符，原样保留
+      result += String.fromCodePoint(code);
+    } else {
+      const shift = makeShift(key, i);
+      const newPos = (safePos + shift) % SAFE_TOTAL;
+      result += String.fromCodePoint(fwdMap[newPos]);
+    }
     if (code > 0xFFFF) i++;
   }
   return result;
@@ -411,12 +439,23 @@ function decrypt(cipher, key) {
   let result = '';
   for (let i = 0; i < cipher.length; i++) {
     const code = cipher.codePointAt(i);
-    const shift = makeShift(key, i);
-    const newCode = (((code % MOD) - shift) % MOD + MOD) % MOD;
-    result += String.fromCodePoint(newCode);
+    const safePos = revMap[code];
+    if (safePos === -1) {
+      result += String.fromCodePoint(code);
+    } else {
+      const shift = makeShift(key, i);
+      const newPos = (safePos - shift + SAFE_TOTAL) % SAFE_TOTAL;
+      result += String.fromCodePoint(fwdMap[newPos]);
+    }
     if (code > 0xFFFF) i++;
   }
   return result;
+}
+
+function getKeyString() {
+  const k = document.getElementById('key').value;
+  if (!k) throw new Error('请输入密钥字符串');
+  return k;
 }
 
 function doEncrypt() {
