@@ -413,7 +413,7 @@ function makeShift(key, pos) {
   x = (x ^ (x >>> 16)) * 0x45d9f3b | 0;
   x = (x ^ (x >>> 16)) * 0x45d9f3b | 0;
   x = x ^ (x >>> 16);
-  return (x >>> 0) % SAFE_TOTAL; // 偏移范围 0 ~ SAFE_TOTAL-1
+  return (x >>> 0) % 256; // 偏移范围 0 ~ 255，保持字符在可显示区域附近
 }
 
 // ---- 加解密 ----
