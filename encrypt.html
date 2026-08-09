@@ -41,7 +41,7 @@
     align-items: center;
     justify-content: center;
     padding: 24px;
-    overflow: hidden;
+    overflow-x: hidden;
   }
 
   /* Animated background grid */
@@ -439,17 +439,24 @@ function makeShift(key, pos) {
 }
 
 // ---- 加解密 ----
+// 安全移位：确保结果不落在代理区（U+D800-U+DFFF）
+function safeShift(pos, delta) {
+  let p = (pos + delta) % SAFE_TOTAL;
+  if (p < 0) p += SAFE_TOTAL;
+  while (isControl(fwdMap[p])) p = (p + 1) % SAFE_TOTAL;
+  return p;
+}
+
 function encrypt(text, key) {
   let result = '';
   for (let i = 0; i < text.length; i++) {
     const code = text.codePointAt(i);
-    const safePos = revMap[code]; // 原文在安全序列中的位置
+    const safePos = revMap[code];
     if (safePos === -1) {
-      // 原文本身是控制字符，原样保留
       result += String.fromCodePoint(code);
     } else {
       const shift = makeShift(key, i);
-      const newPos = (safePos + shift) % SAFE_TOTAL;
+      const newPos = safeShift(safePos, shift);
       result += String.fromCodePoint(fwdMap[newPos]);
     }
     if (code > 0xFFFF) i++;
@@ -466,7 +473,7 @@ function decrypt(cipher, key) {
       result += String.fromCodePoint(code);
     } else {
       const shift = makeShift(key, i);
-      const newPos = (safePos - shift + SAFE_TOTAL) % SAFE_TOTAL;
+      const newPos = safeShift(safePos, -shift);
       result += String.fromCodePoint(fwdMap[newPos]);
     }
     if (code > 0xFFFF) i++;
