@@ -4,9 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>文本加解密工具</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -28,8 +25,8 @@
     --red: #f87171;
     --red-glow: rgba(248,113,113,0.12);
     --radius: 12px;
-    --font: 'Space Grotesk', -apple-system, sans-serif;
-    --mono: 'JetBrains Mono', monospace;
+    --font: system-ui, -apple-system, 'Segoe UI', Roboto, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    --mono: ui-monospace, 'SF Mono', Consolas, 'Liberation Mono', monospace;
   }
 
   body {
@@ -79,25 +76,6 @@
   .header {
     text-align: center;
     margin-bottom: 40px;
-  }
-
-  .header-icon {
-    width: 56px;
-    height: 56px;
-    margin: 0 auto 16px;
-    border-radius: 16px;
-    background: linear-gradient(135deg, var(--accent), #a78bfa);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    box-shadow: 0 8px 32px rgba(120,160,255,0.2);
-    animation: float 4s ease-in-out infinite;
-  }
-
-  @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-4px); }
   }
 
   .header h1 {
@@ -341,7 +319,6 @@
 
 <div class="container">
   <div class="header">
-    <div class="header-icon">&#x1F510;</div>
     <h1>文本加解密</h1>
     <p>密钥 → 伪随机偏移序列 → 逐字符移位</p>
   </div>
@@ -449,34 +426,38 @@ function safeShift(pos, delta) {
 
 function encrypt(text, key) {
   let result = '';
+  let cp = 0; // 码点序号（代理对算 1 个）
   for (let i = 0; i < text.length; i++) {
     const code = text.codePointAt(i);
     const safePos = revMap[code];
     if (safePos === -1) {
       result += String.fromCodePoint(code);
     } else {
-      const shift = makeShift(key, i);
+      const shift = makeShift(key, cp);
       const newPos = safeShift(safePos, shift);
       result += String.fromCodePoint(fwdMap[newPos]);
     }
     if (code > 0xFFFF) i++;
+    cp++;
   }
   return result;
 }
 
 function decrypt(cipher, key) {
   let result = '';
+  let cp = 0; // 码点序号（代理对算 1 个）
   for (let i = 0; i < cipher.length; i++) {
     const code = cipher.codePointAt(i);
     const safePos = revMap[code];
     if (safePos === -1) {
       result += String.fromCodePoint(code);
     } else {
-      const shift = makeShift(key, i);
+      const shift = makeShift(key, cp);
       const newPos = safeShift(safePos, -shift);
       result += String.fromCodePoint(fwdMap[newPos]);
     }
     if (code > 0xFFFF) i++;
+    cp++;
   }
   return result;
 }
